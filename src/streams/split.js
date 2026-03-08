@@ -2,10 +2,6 @@ import fs from 'fs';
 import path from 'path';
 
 const split = async () => {
-  // Write your code here
-  // Read source.txt using Readable Stream
-  // Split into chunk_1.txt, chunk_2.txt, etc.
-  // Each chunk max N lines (--lines CLI argument, default: 10)
 
   const idx = process.argv.indexOf('--lines');
   const maxLines = idx !== -1 ? Number(process.argv[idx + 1]) : 10;
@@ -23,7 +19,6 @@ const split = async () => {
     buffer += chunk;
     let lines = buffer.split('\n');
 
-    // Последняя строка может быть неполной
     buffer = lines.pop();
 
     for (const line of lines) {
@@ -40,7 +35,6 @@ const split = async () => {
   });
 
   readStream.on('end', () => {
-    // Если осталась последняя строка
     if (buffer.length > 0) {
       writeStream.write(buffer + '\n');
     }

@@ -4,14 +4,9 @@ import crypto from 'crypto';
 
 
 const verify = async () => {
-  // Write your code here
-  // Read checksums.json
-  // Calculate SHA256 hash using Streams API
-  // Print result: filename — OK/FAIL
 const baseDir = process.cwd();
   const checksumsPath = path.join(baseDir, 'checksums.json');
 
-  // checksums.json должен существовать
   if (!fs.existsSync(checksumsPath)) {
     throw new Error('FS operation failed');
   }

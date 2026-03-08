@@ -1,11 +1,6 @@
 const progress = () => {
-  // Write your code here
-  // Simulate progress bar from 0% to 100% over ~5 seconds
-  // Update in place using \r every 100ms
-  // Format: [████████████████████          ] 67%
   const args = process.argv.slice(2);
 
-  // --- CLI parsing ---
   const getArg = (name, def) => {
     const idx = args.indexOf(name);
     if (idx !== -1 && args[idx + 1]) return args[idx + 1];
@@ -17,7 +12,6 @@ const progress = () => {
   const length = Number(getArg('--length', 30));
   const colorArg = getArg('--color', null);
 
-  // Validate color
   let color = null;
   if (colorArg && /^#[0-9A-Fa-f]{6}$/.test(colorArg)) {
     const r = parseInt(colorArg.slice(1, 3), 16);

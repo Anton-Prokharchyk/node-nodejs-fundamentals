@@ -2,14 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Получаем __dirname в ES-модуле
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-// -----------------------------
-// Поиск workspace вверх по дереву
-// -----------------------------
 function findWorkspace() {
   function search(dir) {
     const candidate = path.join(dir, 'workspace');
@@ -30,9 +25,6 @@ function findWorkspace() {
   return search(__dirname);
 }
 
-// -----------------------------
-// Рекурсивный сбор файлов
-// -----------------------------
 async function collectFiles(dir, ext, root, result) {
   const items = await fs.promises.readdir(dir, { withFileTypes: true });
 
@@ -52,21 +44,17 @@ async function collectFiles(dir, ext, root, result) {
 
 
 const findByExt = async () => {
-  // Write your code here
-  // Recursively find all files with specific extension
-  // Parse --ext CLI argument (default: .txt)
 
 const args = process.argv.slice(2);
   const extIndex = args.indexOf('--ext');
 
-  let ext = '.txt'; // default
+  let ext = '.txt';
 
   if (extIndex !== -1 && args[extIndex + 1]) {
     const raw = args[extIndex + 1];
     ext = raw.startsWith('.') ? raw : `.${raw}`;
   }
 
-  // Находим workspace
   const workspace = findWorkspace();
 
   if (!workspace || !fs.existsSync(workspace)) {
