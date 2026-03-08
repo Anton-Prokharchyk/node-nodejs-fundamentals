@@ -1,17 +1,12 @@
 import readline from 'readline';
 
 const interactive = () => {
-  // Write your code here
-  // Use readline module for interactive CLI
-  // Support commands: uptime, cwd, date, exit
-  // Handle Ctrl+C and unknown commands
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
     prompt: '> '
   });
 
-  // Показать начальный prompt
   rl.prompt();
 
   rl.on('line', (input) => {
@@ -41,13 +36,11 @@ const interactive = () => {
     rl.prompt();
   });
 
-  // Ctrl+C
   rl.on('SIGINT', () => {
     console.log('Goodbye!');
     process.exit(0);
   });
 
-  // Конец ввода (Ctrl+D)
   rl.on('close', () => {
     console.log('Goodbye!');
     process.exit(0);

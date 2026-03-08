@@ -6,11 +6,6 @@ const __dirname = path.dirname(__filename);
 
 
 const dynamic = async () => {
-  // Write your code here
-  // Accept plugin name as CLI argument
-  // Dynamically import plugin from plugins/ directory
-  // Call run() function and print result
-  // Handle missing plugin case
 
  const args = process.argv.slice(2);
  const pluginName = args[0];

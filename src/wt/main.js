@@ -4,21 +4,11 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { Worker } from 'worker_threads';
 
-// __dirname для ES-модулей
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
 const main = async () => {
-  // Write your code here
-  // Read data.json containing array of numbers
-  // Split into N chunks (N = CPU cores)
-  // Create N workers, send one chunk to each
-  // Collect sorted chunks
-  // Merge using k-way merge algorithm
-  // Log final sorted array
-
-   // Read data.json
  const dataPath = path.resolve(__dirname, '../../data.json');
 
   const raw = await fs.readFile(dataPath, 'utf8');
@@ -34,7 +24,6 @@ const main = async () => {
 
   const workerPromises = chunks.map((chunk) => {
     return new Promise((resolve, reject) => {
-      // worker.js лежит в той же папке
       const workerPath = path.join(__dirname, 'worker.js');
       const worker = new Worker(workerPath);
 
